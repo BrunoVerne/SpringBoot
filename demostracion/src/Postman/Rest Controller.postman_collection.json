@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "6a0b2b78-3b0b-47d2-bd08-841dc12e1b40",
+		"name": "Rest Controller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "44844361",
+		"_collection_link": "https://brunoverne.postman.co/workspace/BrunoVerne's-Workspace~6468c3ce-f431-43e5-8392-90c17e420e4e/collection/44844361-6a0b2b78-3b0b-47d2-bd08-841dc12e1b40?action=share&source=collection_link&creator=44844361"
+	},
+	"item": [
+		{
+			"name": "normal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8081"
+			},
+			"response": []
+		},
+		{
+			"name": "con parametro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8081/bruno"
+			},
+			"response": []
+		},
+		{
+			"name": "Sumar dos valores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8081/1/2"
+			},
+			"response": []
+		}
+	]
+}
