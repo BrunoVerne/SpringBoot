@@ -1,16 +1,16 @@
 package dominio;
 
-public class Persona {
+public class Socio {
     private Long codigo;
     private String nombre;
     private String apellido;
     private String email;
 
-    public void Persona(){
+    public Socio(){
 
     }
 
-    public Persona(Long codigo, String nombre, String apellido, String email) {
+    public Socio(Long codigo, String nombre, String apellido, String email) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.apellido = apellido;

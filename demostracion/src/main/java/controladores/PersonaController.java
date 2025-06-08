@@ -1,8 +1,7 @@
-package com.ejemplo.demostracion;
+package controladores;
 
 import dominio.Persona;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +12,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/persona")
-public class PrimerRestController {
+public class PersonaController {
 
 
 
     private List<Persona> personas;
 
-    public PrimerRestController(List<Persona> personas) {
+    public PersonaController(List<Persona> personas) {
         this.personas = new ArrayList<>(
                 Arrays.asList(
                         new Persona(1L, "lautaro", "martinez", "lau@gmail.com"),
@@ -75,15 +74,20 @@ public class PrimerRestController {
             return ResponseEntity.badRequest().body("Nombre y apellido vacio");
 
         }
-            return this.personas
-                .stream()
-                .filter(persona -> persona.getEmail().equals(mail))
-                .findFirst().
-                orElse(new Persona(null,null,null,null));
+        Persona persona = this.personas.stream()
+                .filter(p -> p.getEmail().equals(mail))
+                .findFirst()
+                .orElse(null);
+
+        if (persona != null) {
+            return ResponseEntity.ok(persona);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<Persona> crear(@RequestBody Persona persona){
         persona.setCodigo((long) this.personas.size() + 1);
         this.personas.add(persona);
