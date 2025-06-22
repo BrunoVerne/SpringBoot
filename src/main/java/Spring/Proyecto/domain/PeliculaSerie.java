@@ -62,4 +62,8 @@ public class PeliculaSerie {
     public void setPersonajesAsociados(List<Personaje> personajesAsociados) {
         this.personajesAsociados = personajesAsociados;
     }
+
+    public Long getCodigo() {
+        return codigo;
+    }
 }

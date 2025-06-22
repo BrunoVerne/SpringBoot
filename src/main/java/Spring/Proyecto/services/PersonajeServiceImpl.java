@@ -26,11 +26,7 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     @Override
     public Personaje getById(long id) {
-        Optional<Personaje> optionalPersonaje = this.personajeRepository.getById(id);
-        if(optionalPersonaje.isPresent()){
-            return  optionalPersonaje.get();
-        }
-        return null;
+        return this.personajeRepository.getById(id).orElse(null);
     }
 
     @Override

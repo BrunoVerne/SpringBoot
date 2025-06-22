@@ -10,4 +10,6 @@ public interface PeliculaSerieRepository extends JpaRepository<PeliculaSerie,Lon
     @Query("FROM PeliculaSerie ps WHERE ps.titulo = ?1 ")
     Optional<PeliculaSerie> buscarPorTitulo(String titulo);
 
+
+
 }

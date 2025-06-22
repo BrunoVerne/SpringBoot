@@ -1,6 +1,8 @@
 package Spring.Proyecto.Controllers;
 
 import Spring.Proyecto.domain.Personaje;
+import Spring.Proyecto.exception.PersonajeExistException;
+import Spring.Proyecto.exception.PersonajeNotFoundException;
 import Spring.Proyecto.services.PersonajeService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -25,28 +27,26 @@ public class PersonajeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
-       Personaje response = this.personajeService.getById(id);
-        if(response == null){
-            return ResponseEntity.
-                    notFound()
-                    .build();
-        }
-        return ResponseEntity.ok(response);
+        Personaje personaje;
+       try{
+           personaje = this.personajeService.getById(id);
+       }catch (PersonajeNotFoundException e){
+           return ResponseEntity
+                   .status(HttpStatus.BAD_REQUEST)
+                   .body(e.getMessage());
+       }
+        return ResponseEntity.
+                status(HttpStatus.CREATED)
+                .body(personaje);
+
     }
 
 
     @PostMapping
     public ResponseEntity<?> createPersonaje(@RequestBody Personaje personaje){
-         Personaje response = this.personajeService.createPersonaje(personaje);
+         Personaje response =  this.personajeService.createPersonaje(personaje);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
-        if(response == null){
-            return ResponseEntity.
-                    status(HttpStatus.CONFLICT).
-                    body("el mail ya existe");
-        }
-        return ResponseEntity.
-                status(HttpStatus.CREATED)
-                .body(personaje);
     }
 
     @GetMapping("/paginado")
